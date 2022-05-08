@@ -4,8 +4,8 @@ import { WidgetDisplay } from "./components/WidgetDisplay";
 export function App() {
   return (
     <>
-      <Widget />
       <WidgetDisplay />
+      <Widget />
     </>
   );
 }

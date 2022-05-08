@@ -5,11 +5,21 @@ export function WidgetDisplay() {
     <div
       className="
       w-[calc(100vw-1rem)] 
-      flex 
+      flex
       flex-wrap
+      items-center
+      
       
       "
     >
+      <WidgetCard />
+      <WidgetCard />
+      <WidgetCard />
+      <WidgetCard />
+      <WidgetCard />
+      <WidgetCard />
+      <WidgetCard />
+      <WidgetCard />
       <WidgetCard />
     </div>
   );
