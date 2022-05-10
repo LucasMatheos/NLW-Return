@@ -1,11 +1,14 @@
-import bugImage from "../../assets/bug.svg";
+import { FeedbackType, feedbackTypes } from "../WidgetForm";
 
 interface WidgetCardProps {
-  type: string;
+  type: FeedbackType;
   comment: string;
   screenshot?: string;
 }
-export function WidgetCard() {
+
+export function WidgetCard({ type, comment, screenshot }: WidgetCardProps) {
+  const feedbackTypeInfo = feedbackTypes[type];
+
   return (
     <div
       className="
@@ -25,19 +28,20 @@ export function WidgetCard() {
     >
       <header>
         <span className="text-xl leading-6 flex items-center justify-center gap-2">
-          <img src={bugImage} alt="" className="h-6 w-6" /> Problema
+          <img
+            src={feedbackTypeInfo.image.source}
+            alt={feedbackTypeInfo.image.alt}
+            className="h-6 w-6"
+          />{" "}
+          {feedbackTypeInfo.title}
         </span>
       </header>
       <span>Comentário:</span>
       <main className="lg:w-[100%] h-auto rounded-md  text-zinc-100  bg-transparent scrollbar scrollbar-thumb-zinc-700 scrollbar-track-transparent scrollbar-thin">
-        <p className="p-2">
-          Ta tudo uma BOSTA Ta tudo uma BOSTA Ta tudo uma BOSTA Ta tudo uma
-          BOSTA Ta tudo uma BOSTA Ta tudo uma BOSTA Ta tudo uma BOSTA Ta tudo
-          uma BOSTA Ta tudo uma BOSTA Ta tudo uma BOSTA Ta tudo uma BOSTA Ta
-          tudo uma BOSTA Ta tudo uma BOSTA
-        </p>
-
-        <img className="mt-2" src={bugImage} alt="ScreenShoot" />
+        <p className="p-2">{comment}</p>
+        {screenshot && (
+          <img className="w-[100%]" src={screenshot} alt="ScreenShoot" />
+        )}
       </main>
     </div>
   );

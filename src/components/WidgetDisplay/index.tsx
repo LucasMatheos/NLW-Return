@@ -1,6 +1,22 @@
+import { useEffect, useState } from "react";
+import { api } from "../../lib/api";
+import { FeedbackType } from "../WidgetForm";
 import { WidgetCard } from "./WidgetCard";
 
+interface FeedbacksTypes {
+  id: string;
+  type: FeedbackType;
+  comment: string;
+  screenshot?: string;
+}
+
 export function WidgetDisplay() {
+  const [feedbacks, setFeedbacks] = useState<FeedbacksTypes[]>([]);
+
+  useEffect(() => {
+    api.get("/feedbacks").then((response) => setFeedbacks(response.data));
+  }, []);
+
   return (
     <div
       className="
@@ -8,19 +24,18 @@ export function WidgetDisplay() {
       flex
       flex-wrap
       items-center
-      
-      
       "
     >
-      <WidgetCard />
-      <WidgetCard />
-      <WidgetCard />
-      <WidgetCard />
-      <WidgetCard />
-      <WidgetCard />
-      <WidgetCard />
-      <WidgetCard />
-      <WidgetCard />
+      {feedbacks.map((feedback) => {
+        return (
+          <WidgetCard
+            key={feedback.id}
+            type={feedback.type}
+            comment={feedback.comment}
+            screenshot={feedback.screenshot}
+          />
+        );
+      })}
     </div>
   );
 }
