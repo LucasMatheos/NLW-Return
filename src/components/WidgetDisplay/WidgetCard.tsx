@@ -26,13 +26,13 @@ export function WidgetCard({ type, comment, screenshot }: WidgetCardProps) {
       lg:w-[calc(100%/4-1rem)]
       "
     >
-      <header>
-        <span className="text-xl leading-6 flex items-center justify-center gap-2">
+      <header className="pb-1">
+        <span className="text-2xl leading-6 flex items-center justify-center gap-2">
           <img
             src={feedbackTypeInfo.image.source}
             alt={feedbackTypeInfo.image.alt}
-            className="h-6 w-6"
-          />{" "}
+            className="h-7 w-7"
+          />
           {feedbackTypeInfo.title}
         </span>
       </header>
